@@ -10527,12 +10527,12 @@ ba_maison,120,321,5	script	#172_hgd_rep	20698,{
 					close;
 
 				case 2:
-					.@md_name$ = "1st Security Zone";
+					.@md_name$ = "Security Area 1";
 					break;
 
 
 				case 3:
-					.@md_name$ = "2nd Security Zone";
+					.@md_name$ = "Security Area 2";
 					break;
 
 			}
@@ -10549,13 +10549,13 @@ ba_maison,120,321,5	script	#172_hgd_rep	20698,{
 		case 3:
 			switch (select(((BaseLevel >= 150)?"1st Security Zone.":""),((BaseLevel >= 180)?"^FF00002nd Security Zone^000000":""))) {
 				case 1:
-					.@md_name$ = "1st Security Zone";
+					.@md_name$ = "Security Area 1";
 					.@qid = 12499;
 					.@qid2 = 12500;
 					break;
 
 				case 2:
-					.@md_name$ = "2nd Security Zone";
+					.@md_name$ = "Security Area 2";
 					.@qid = 12500;
 					.@qid2 = 12499;
 					break;

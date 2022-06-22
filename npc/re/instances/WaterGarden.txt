@@ -62,10 +62,10 @@ OnTouch:
 	end;
 
 OnTouch:
-	if ('water_garden) {
-		mes "- You can enter the water garden after the party leader has entered the MD. -";
-		close;
-	}
+	//if ('water_garden) {
+	//	mes "- You can enter the water garden after the party leader has entered the MD. -";
+	//	close;
+	//}
 	.@id = atoi(replacestr(strnpcinfo(2),"172_wg_warp_",""));
 	switch (.@id) {
 		case 0: .@x = 208; .@y = 57; break;

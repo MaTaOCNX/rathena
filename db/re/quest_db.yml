@@ -10258,7 +10258,7 @@ Body:
   - Id: 16363
     Title: Process EL1_A17T
     Targets:
-      - Mob: MD_E_EA1L
+      - Mob: MD_EL_A17T
         Count: 1
   - Id: 16364
     Title: Helping Farm Worker
@@ -10633,6 +10633,13 @@ Body:
         Count: 10
       - Mob: EP17_2_BETA_CLEANER_B
         Count: 10
+    Drops:
+      - Mob: EP17_2_BETA_CLEANER_A
+        Item: Broken_AutoDoll_Parts
+        Rate: 5000
+      - Mob: EP17_2_BETA_CLEANER_B
+        Item: Broken_AutoDoll_Parts
+        Rate: 5000
   - Id: 17377
     Title: Between hot and cold baths - Waiting
     TimeLimit: 4h

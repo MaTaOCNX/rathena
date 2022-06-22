@@ -13,7 +13,7 @@
 	end;
 
 OnInstanceInit:
-	'map = instance_mapname("1@herbs");
+	'map$ = instance_mapname("1@herbs");
 	disablenpc instance_npcname("#172_hgd_guide_1");
 	disablenpc instance_npcname("#172_hgd_carota");
 	disablenpc instance_npcname("#172_hgd_guide_2");
@@ -32,8 +32,9 @@ OnInstanceInit:
 	disablenpc instance_npcname("#172_sec_kappa");
 	disablenpc instance_npcname("#172_sec_lambda");
 	disablenpc instance_npcname("#172_sec_sigma");
-	for (.@i = 0; .@i < 4; .@i++)
+	for (.@i = 0; .@i < 4; .@i++){
 		disablenpc instance_npcname("#172_sec_warp_" + .@i);
+	}	
 	disablenpc instance_npcname("#172_sec_warp_n");
 	disablenpc instance_npcname("#172_sec_warp_h");
 	end;
@@ -784,7 +785,10 @@ OnEvent:
 	npctalk "---- Combat Mode ----",instance_npcname("#172_hgd_guard_2");
 	sleep 500;
 	for (.@i = 0; .@i < 3; .@i++)
+	{
 		donpcevent instance_npcname("#172_hgd_guard_" + .@i) + "::OnSummon";
+	}
+	
 	end;
 
 OnEvent2:
@@ -1334,12 +1338,13 @@ OnTouch:
 	disablenpc instance_npcname("#172_hgd_guide_0");
 	enablenpc instance_npcname("#172_sec_guide");
 	'guide = getnpcid(0,instance_npcname("#172_sec_guide"));
-	'admin = strcharinfo(0);
+	'admin$ = strcharinfo(0);
 	'beta = 20622;
 	'flower = 20624;
 	'plant = 20626;
 	enablenpc instance_npcname("#172_sec_kappa");
-	warp 'map$,150,80;
+	//warp 'map$,150,80;
+	mapannounce 'map$,"Security Area 1",bc_map,0xFFFF44;
 	unitwalk 'guide,53,196,instance_npcname("#172_sec_guide") + "::OnEvent01";
 	end;
 }
@@ -1355,11 +1360,13 @@ OnTouch:
 	disablenpc instance_npcname("#172_hgd_guide_0");
 	enablenpc instance_npcname("#172_sec_guide");
 	'guide = getnpcid(0,instance_npcname("#172_sec_guide"));
-	'admin = strcharinfo(0);
+	'admin$ = strcharinfo(0);
 	'mode = 1;
 	'beta = 20623;
 	'flower = 20625;
 	'plant = 20627;
+	enablenpc instance_npcname("#172_sec_lambda");
+	mapannounce 'map$,"Security Area 2",bc_map,0xFFFF44;
 	unitwalk 'guide,53,196,instance_npcname("#172_sec_guide") + "::OnEvent01";
 	end;
 }
@@ -1517,8 +1524,8 @@ OnEvent:
 	}
 	sleep 3000;
 	mapannounce 'map$,"The warp connecting the flower garden has activated.",bc_map,0x33FF33;
-	'sec += 1;
 	enablenpc instance_npcname("#172_sec_warp_" + 'sec);
+	'sec += 1;
 	end;
 }
 
@@ -1620,7 +1627,7 @@ OnTouch:
 		erasequest .@qid;
 		getitem 1000103,6;
 		if (.@qid == 12500) {
-			if (rand(1,100) < 95)
+			if (rand(1,100) < 50)
 				getitem 1000104,rand(1,5);
 			else
 				getitem 100161,1;

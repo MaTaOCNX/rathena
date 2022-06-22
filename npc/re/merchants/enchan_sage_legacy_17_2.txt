@@ -364,7 +364,7 @@ ba_in01,87,380,3	script	Yecheon#ep172module_trader	4_EP17_CLEANER_W,{
 			.@price = 90;
 			cutin "ep172_omega",2;
 			mes "[ Yecheon ]";
-			mes "I will exchange 1 random Automatic Module excluding the epic grade modules for 90 <ITEM>[Barmeal Ticket]<INFO>1000103</INFO></ITEM>.";
+			mes "I will exchange 1 random Automatic Module *Excluding* the epic grade modules for 90 <ITEM>[Barmeal Ticket]<INFO>1000103</INFO></ITEM>.";
 			next;
 			cutin "",255;
 			if (select("Exchange Barmeal Ticket.:Do not exchange") == 2) {

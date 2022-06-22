@@ -499,11 +499,13 @@ static void script_reportsrc(struct script_state *st)
 		case BL_NPC: {
 			struct npc_data* nd = (struct npc_data*)bl;
 
-			if( bl->m >= 0 )
-				ShowDebug("Source (NPC): %s at %s (%d,%d)\n", nd->name, map_mapid2mapname(bl->m), bl->x, bl->y);
+			if (bl->m >= 0)
+			{
+				//ShowDebug("Source (NPC): %s at %s (%d,%d)\n", nd->name, map_mapid2mapname(bl->m), bl->x, bl->y);
+			}
 			else
 				ShowDebug("Source (NPC): %s (invisible/not on a map)\n", nd->name);
-			ShowDebug( "Source (NPC): %s is located in: %s\n", nd->name, nd->path );
+			//ShowDebug( "Source (NPC): %s is located in: %s\n", nd->name, nd->path );
 			} break;
 		default:
 			if( bl->m >= 0 )
@@ -19313,7 +19315,7 @@ BUILDIN_FUNC(unitwalk)
 	// Unit was already forced to walk.
 	if (ud != nullptr && ud->state.force_walk) {
 		script_pushint(st, 0);
-		ShowWarning("buildin_%s: Unit has already been forced to walk and not reached it's destination yet.\n", cmd);
+		//ShowWarning("buildin_%s: Unit has already been forced to walk and not reached it's destination yet.\n", cmd);
 		return SCRIPT_CMD_FAILURE;
 	}
 
