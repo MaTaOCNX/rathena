@@ -1,0 +1,326 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Monster Database
+###########################################################################
+#
+# Monster Settings
+#
+###########################################################################
+# - Id                      Monster ID.
+#   AegisName               Server name to reference the monster in scripts and lookups, should use no spaces.
+#   Name                    Name in English.
+#   JapaneseName            Name in Japanese. (Default: 'Name' value)
+#   Level                   Level. (Default: 1)
+#   Hp                      Total HP. (Default: 1)
+#   Sp                      Total SP. (Default: 1)
+#   BaseExp                 Base experience gained. (Default: 0)
+#   JobExp                  Job experience gained. (Default: 0)
+#   MvpExp                  MVP experience gained. (Default: 0)
+#   Attack                  Minimum attack in pre-renewal and base attack in renewal. (Default: 0)
+#   Attack2                 Maximum attack in pre-renewal and base magic attack in renewal. (Default: 0)
+#   Defense                 Physical defense of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+#   MagicDefense            Magic defense of the monster, reduces magical skill damage. (Default: 0)
+#   Resistance              Physical resistance of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+#   MagicResistance         Magic resistance of the monster, reduces magical skill damage. (Default: 0)
+#   Str                     Strength which affects attack. (Default: 1)
+#   Agi                     Agility which affects flee. (Default: 1)
+#   Vit                     Vitality which affects defense. (Default: 1)
+#   Int                     Intelligence which affects magic attack. (Default: 1)
+#   Dex                     Dexterity which affects hit rate. (Default: 1)
+#   Luk                     Luck which affects perfect dodge/lucky flee/perfect flee/lucky dodge rate. (Default: 1)
+#   AttackRange             Attack range. (Default: 0)
+#   SkillRange              Skill cast range. (Default: 0)
+#   ChaseRange              Chase range. (Default: 0)
+#   Size                    Size. (Default: Small)
+#   Race                    Race. (Default: Formless)
+#   RaceGroups:             List of secondary groups the monster may be part of. (Optional)
+#     <group>: <value>      Group to toggle.
+#   Element                 Element. (Default: Neutral)
+#   ElementLevel            Level of element. (Default: 1)
+#   WalkSpeed               Walk speed. (Default: DEFAULT_WALK_SPEED)
+#   AttackDelay             Attack speed. (Default: 0)
+#   AttackMotion            Attack animation speed. (Default: 0)
+#   DamageMotion            Damage animation speed. (Default: 0)
+#   DamageTaken             Rate at which the monster will receive incoming damage. (Default: 100)
+#   Ai                      Aegis monster type AI behavior. (Default: 06)
+#   Class                   Aegis monster class. (Default: Normal)
+#   Modes:                  List of unique behavior not defined by AI, Class, or Attribute. (Optional)
+#     <mode>: <value>       Mode to toggle.
+#   MvpDrops:               List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item.
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+#   Drops:                  List of possible normal item drops. Max of MAX_MOB_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item.
+#       StealProtected      If the item is shielded from TF_STEAL. (Default: false)
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+###########################################################################
+
+Header:
+  Type: MOB_DB
+  Version: 3
+
+Body:
+  - Id: 20604
+    AegisName: ANGELGOLT
+    Name: Angelgolt
+    Level: 196
+    Hp: 2634990
+    Defense: 252
+    MagicDefense: 71
+    Str: 143
+    Agi: 117
+    Vit: 102
+    Int: 186
+    Dex: 231
+    Luk: 106
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Small
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 400
+    AttackDelay: 1280
+    AttackMotion: 400
+    DamageMotion: 1000
+    Ai: 10
+    Modes:
+      CanMove: true
+      Assist: true
+    Drops:
+      []
+  - Id: 20605
+    AegisName: ANGELGOLT2
+    Name: Angelgolt
+    Level: 196
+    Hp: 2634990
+    Defense: 252
+    MagicDefense: 71
+    Str: 143
+    Agi: 117
+    Vit: 102
+    Int: 186
+    Dex: 231
+    Luk: 106
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Small
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 400
+    AttackDelay: 1280
+    AttackMotion: 400
+    DamageMotion: 1000
+    Ai: 10
+    Modes:
+      CanMove: true
+      Assist: true
+    Drops:
+      []
+  - Id: 20606
+    AegisName: HOLY_FRUS
+    Name: Holy Frus
+    Level: 201
+    Hp: 2700802
+    Attack: 4567
+    Attack2: 6647
+    Defense: 239
+    MagicDefense: 76
+    Str: 206
+    Agi: 111
+    Vit: 119
+    Int: 92
+    Dex: 201
+    Luk: 43
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 480
+    AttackMotion: 576
+    DamageMotion: 432
+    Ai: 10
+    Modes:
+      CanMove: true
+    Drops:
+      []
+  - Id: 20607
+    AegisName: HOLY_SKOGUL
+    Name: Holy Skogul
+    Level: 202
+    Hp: 2700802
+    Attack: 4568
+    Attack2: 6648
+    Defense: 247
+    MagicDefense: 77
+    Str: 206
+    Agi: 111
+    Vit: 119
+    Int: 92
+    Dex: 201
+    Luk: 43
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 190
+    AttackDelay: 720
+    AttackMotion: 384
+    DamageMotion: 480
+    Ai: 10
+    Modes:
+      CanMove: true
+    Drops:
+      []
+  - Id: 20608
+    AegisName: PLASMA_ARCH
+    Name: Arch Plasma
+    Level: 198
+    Hp: 7588702
+    Attack: 3812
+    Attack2: 5492
+    Defense: 229
+    MagicDefense: 75
+    Str: 254
+    Agi: 135
+    Vit: 135
+    Int: 164
+    Dex: 259
+    Luk: 79
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 1000
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 10
+    Modes:
+      CanMove: true
+    Drops:
+      []
+  - Id: 20609
+    AegisName: PLASMA_SPT
+    Name: Spectral Plasma
+    Level: 198
+    Hp: 7588702
+    Attack: 3812
+    Attack2: 5492
+    Defense: 225
+    MagicDefense: 74
+    Str: 254
+    Agi: 135
+    Vit: 135
+    Int: 164
+    Dex: 259
+    Luk: 79
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 1000
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 10
+    Modes:
+      CanMove: true
+    Drops:
+      []
+  - Id: 20610
+    AegisName: REGINLEIF
+    Name: Valkyrie Reginleif
+    Level: 207
+    Hp: 79249813
+    Attack: 7326
+    Attack2: 10726
+    Defense: 506
+    MagicDefense: 94
+    Str: 319
+    Agi: 354
+    Vit: 69
+    Int: 306
+    Dex: 325
+    Luk: 194
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Angel
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 576
+    AttackMotion: 576
+    DamageMotion: 480
+    Modes:
+      Mvp: true
+    Drops:
+      []
+  - Id: 20611
+    AegisName: INGRID
+    Name: Valkyrie Ingrid
+    Level: 198
+    Hp: 75393148
+    Attack: 7361
+    Attack2: 10761
+    Defense: 374
+    MagicDefense: 92
+    Str: 354
+    Agi: 365
+    Vit: 35
+    Int: 264
+    Dex: 259
+    Luk: 179
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Angel
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 576
+    AttackMotion: 576
+    DamageMotion: 480
+    Modes:
+      Mvp: true
+    Drops:
+      []

@@ -1,0 +1,7 @@
+// Item Combos Database
+//
+// Structure of Database:
+// ID:ID:ID:ID,{ Script }
+//1000221:1000222,{ bonus bAtkRate,5; bonus bCritAtkRate,15; }
+//1000221:1000223,{ bonus2 bSkillAtk,"GC_COUNTERSLASH",20; }
+//1000221:1000224,{ bonus bDelayrate,-5; }

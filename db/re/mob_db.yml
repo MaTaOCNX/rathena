@@ -94651,12 +94651,12 @@ Body:
     Attack2: 3264
     Defense: 600
     MagicDefense: 115
-    Str: 206
-    Agi: 158
-    Vit: 136
-    Int: 221
-    Dex: 286
-    Luk: 65
+    Str: 164
+    Agi: 168
+    Vit: 138
+    Int: 173
+    Dex: 121
+    Luk: 102
     AttackRange: 1
     SkillRange: 10
     ChaseRange: 12
