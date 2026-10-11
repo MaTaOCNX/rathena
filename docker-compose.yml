@@ -1,0 +1,87 @@
+# rAthena + MariaDB
+#
+#   docker compose up -d --build     build the image and start everything
+#   docker compose logs -f map       follow a server's output
+#   docker compose down              stop (add -v to also wipe the database)
+#
+# Settings are read from .env (see .env.example).
+
+x-rathena: &rathena
+    image: rathena:local
+    build:
+        context: .
+        args:
+            CONFIGURE_FLAGS: ${CONFIGURE_FLAGS:-}
+    restart: unless-stopped
+    init: true
+    environment: &rathena-env
+        TZ: ${TZ:-Asia/Bangkok}
+        DB_HOST: db
+        DB_PORT: 3306
+        DB_USER: ${DB_USER:-ragnarok}
+        DB_PASS: ${DB_PASS:-ragnarok}
+        DB_NAME: ${DB_NAME:-ragnarok}
+        PUBLIC_IP: ${PUBLIC_IP:-127.0.0.1}
+        SERVER_USERID: ${SERVER_USERID:-}
+        SERVER_PASSWD: ${SERVER_PASSWD:-}
+
+services:
+    db:
+        image: mariadb:10.11
+        restart: unless-stopped
+        environment:
+            TZ: ${TZ:-Asia/Bangkok}
+            MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASS:-ragnarok}
+            MARIADB_DATABASE: ${DB_NAME:-ragnarok}
+            MARIADB_USER: ${DB_USER:-ragnarok}
+            MARIADB_PASSWORD: ${DB_PASS:-ragnarok}
+        ports:
+            - "${DB_PUBLISH:-127.0.0.1:3306}:3306" # for HeidiSQL & co. on the host
+        volumes:
+            - rathena-db:/var/lib/mysql
+            # Imported once, when the volume is still empty
+            - ./sql-files/main.sql:/docker-entrypoint-initdb.d/01-main.sql:ro
+            - ./sql-files/logs.sql:/docker-entrypoint-initdb.d/02-logs.sql:ro
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            interval: 5s
+            timeout: 5s
+            retries: 30
+            start_period: 30s
+
+    login:
+        <<: *rathena
+        command: login
+        environment:
+            <<: *rathena-env
+            NEW_ACCOUNT: ${NEW_ACCOUNT:-yes}
+        ports:
+            - "6900:6900"
+        depends_on:
+            db:
+                condition: service_healthy
+
+    char:
+        <<: *rathena
+        command: char
+        ports:
+            - "6121:6121"
+        depends_on:
+            db:
+                condition: service_healthy
+            login:
+                condition: service_started
+
+    map:
+        <<: *rathena
+        command: map
+        ports:
+            - "5121:5121"
+        depends_on:
+            db:
+                condition: service_healthy
+            char:
+                condition: service_started
+
+volumes:
+    rathena-db:

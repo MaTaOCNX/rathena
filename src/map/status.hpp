@@ -3104,7 +3104,7 @@ struct sc_display_entry {
 struct status_change_entry {
 	int timer;
 	int val1,val2,val3,val4;
-	std::vector<boss_info> boss_info;
+	std::vector<struct boss_info> boss_info;
 };
 
 ///Status change
