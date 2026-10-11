@@ -3,11 +3,13 @@
 #   docker compose up -d --build     build the image and start everything
 #   docker compose logs -f map       follow a server's output
 #   docker compose down              stop (add -v to also wipe the database)
+#   docker compose build && docker compose push     publish both images to the registry
+#   docker compose pull && docker compose up -d     deploy from the registry (no source needed)
 #
 # Settings are read from .env (see .env.example).
 
 x-rathena: &rathena
-    image: rathena:local
+    image: ${REGISTRY:-mcr.mataocnx.com/matao-ro}/rathena-server:${TAG:-latest}
     build:
         context: .
         args:
@@ -27,7 +29,10 @@ x-rathena: &rathena
 
 services:
     db:
-        image: mariadb:10.11
+        image: ${REGISTRY:-mcr.mataocnx.com/matao-ro}/rathena-db:${TAG:-latest}
+        build:
+            context: ./sql-files
+            dockerfile: ../tools/docker/db.Dockerfile
         restart: unless-stopped
         environment:
             TZ: ${TZ:-Asia/Bangkok}
@@ -39,9 +44,6 @@ services:
             - "${DB_PUBLISH:-127.0.0.1:3306}:3306" # for HeidiSQL & co. on the host
         volumes:
             - rathena-db:/var/lib/mysql
-            # Imported once, when the volume is still empty
-            - ./sql-files/main.sql:/docker-entrypoint-initdb.d/01-main.sql:ro
-            - ./sql-files/logs.sql:/docker-entrypoint-initdb.d/02-logs.sql:ro
         healthcheck:
             test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
             interval: 5s
