@@ -14807,6 +14807,13 @@ int32 pc_attendance_counter( struct map_session_data* sd ){
 		return 0;
 	}
 
+	// MaTaO-RO: every reward was claimed, start over on the next day
+	if( counter >= period->rewards.size() && !pc_attendance_rewarded_today( sd ) ){
+		pc_setreg2( sd, ATTENDANCE_COUNT_VAR, 0 );
+
+		return 0;
+	}
+
 	return 10 * counter + ( ( pc_attendance_rewarded_today(sd) ) ? 1 : 0 );
 }
 
@@ -14836,8 +14843,9 @@ void pc_attendance_claim_reward( struct map_session_data* sd ){
 		return;
 	}
 
+	// MaTaO-RO: start over instead of ending after the last reward
 	if( period->rewards.size() < attendance_counter ){
-		return;
+		attendance_counter = 1;
 	}
 
 	pc_setreg2( sd, ATTENDANCE_DATE_VAR, date_get(DT_YYYYMMDD) );

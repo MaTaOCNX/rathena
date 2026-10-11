@@ -34,59 +34,63 @@ Header:
   Version: 1
 
 Body:
+  # MaTaO-RO: one open-ended period. After the last day the sheet starts over (see pc_attendance_claim_reward).
+  # Keep the client's System/CheckAttendance.lub in sync with these dates and rewards.
   - Start: 20220601
-    End: 20220630
+    End: 20991231
     Rewards:
       - Day: 1
-        ItemId: 22979
+        ItemId: 12208    # Battle Manual
+        Amount: 3
       - Day: 2
-        ItemId: 6316
+        ItemId: 12210    # Bubble Gum
+        Amount: 3
       - Day: 3
-        ItemId: 12265
-        Amount: 5
+        ItemId: 607      # Yggdrasil Berry
+        Amount: 10
       - Day: 4
-        ItemId: 23047
+        ItemId: 7621     # Token Of Siegfried
         Amount: 5
       - Day: 5
-        ItemId: 23038
+        ItemId: 616      # Old Card Album
       - Day: 6
-        ItemId: 23043
+        ItemId: 7620     # Enriched Oridecon
+        Amount: 3
       - Day: 7
-        ItemId: 23340
+        ItemId: 7619     # Enriched Elunium
         Amount: 3
       - Day: 8
-        ItemId: 12516
+        ItemId: 12214    # Convex Mirror
         Amount: 5
       - Day: 9
-        ItemId: 23307
-        Amount: 5
+        ItemId: 608      # Yggdrasil Seed
+        Amount: 20
       - Day: 10
-        ItemId: 12610
+        ItemId: 12411    # HE Battle Manual
       - Day: 11
-        ItemId: 14533
-        Amount: 2
+        ItemId: 12103    # Bloody Branch
       - Day: 12
-        ItemId: 23012
+        ItemId: 6240     # HD Oridecon
         Amount: 3
       - Day: 13
-        ItemId: 23048
-        Amount: 5
+        ItemId: 6241     # HD Elunium
+        Amount: 3
       - Day: 14
-        ItemId: 12264
-        Amount: 5
+        ItemId: 12412    # HE Bubble Gum
       - Day: 15
-        ItemId: 23046
-        Amount: 5
+        ItemId: 12883    # Almighty
+        Amount: 3
       - Day: 16
-        ItemId: 12515
+        ItemId: 12209    # Life Insurance
         Amount: 5
       - Day: 17
-        ItemId: 12522
-        Amount: 5
+        ItemId: 14592    # JOB Battle Manual
+        Amount: 3
       - Day: 18
-        ItemId: 12523
-        Amount: 5
+        ItemId: 616      # Old Card Album
+        Amount: 3
       - Day: 19
-        ItemId: 6234
+        ItemId: 6234     # +7 Armor Refine Ticket
       - Day: 20
-        ItemId: 22845
+        ItemId: 6635     # Blacksmith Blessing
+        Amount: 5
