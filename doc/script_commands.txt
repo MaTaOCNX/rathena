@@ -9718,6 +9718,20 @@ Change the state for the given quest <ID> to "complete" and remove from the user
 
 ---------------------------------------
 
+*getquestlist {<char_id>};
+
+This command sets a bunch of arrays with the quests the invoking character has
+not completed yet (completed quests are skipped). Here's what you get:
+
+@questlist_id[]      - array of quest ids.
+@questlist_name$[]   - array of quest titles ("Unknown quest" if the quest is not in the quest database).
+@questlist_state[]   - array of quest states (0 = inactive, 1 = active).
+@questlist_count     - number of quests found.
+
+Entries beyond @questlist_count may hold data from a previous call.
+
+---------------------------------------
+
 *erasequest <ID>{,<char_id>};
 
 Remove the quest of the given <ID> from the user's quest log.

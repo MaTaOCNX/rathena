@@ -1,0 +1,85 @@
+//===== rAthena Script =======================================
+//= Quest Cleaner
+//===== Description: =========================================
+//= Lets a player remove unfinished quests from the quest
+//= window, e.g. quests that can no longer be completed.
+//= Completed quests are never listed.
+//===== Additional Comments: =================================
+//= 1.0 First Version (requires the getquestlist command) [MaTaO-RO]
+//============================================================
+prontera,147,193,4	script	Quest Cleaner	4_M_JOB_WIZARD,{
+	.@per_page = 10;
+	.@page = 0;
+
+	while (true) {
+		getquestlist;
+		.@count = @questlist_count;
+
+		mes "[Quest Cleaner]";
+		if (.@count < 1) {
+			mes "You have no unfinished quests in your quest window.";
+			close;
+		}
+
+		.@pages = (.@count + .@per_page - 1) / .@per_page;
+		if (.@page >= .@pages)
+			.@page = .@pages - 1;
+		.@start = .@page * .@per_page;
+
+		mes "I can remove quests that you cannot finish from your quest window.";
+		mes "You have ^0000FF" + .@count + "^000000 unfinished quest(s).";
+		if (.@pages > 1)
+			mes "Page " + (.@page + 1) + " of " + .@pages + ".";
+		next;
+
+		// Options 1..per_page are quests, followed by Next, Previous and Cancel
+		.@menu$ = "";
+		for (.@i = 0; .@i < .@per_page; .@i++) {
+			.@n = .@start + .@i;
+			if (.@n < .@count)
+				.@menu$ += replacestr(@questlist_name$[.@n], ":", " -") + " ^777777(" + @questlist_id[.@n] + ")^000000";
+			.@menu$ += ":";
+		}
+		.@menu$ += ((.@page + 1 < .@pages) ? "^0000FFNext page^000000" : "") + ":";
+		.@menu$ += ((.@page > 0) ? "^0000FFPrevious page^000000" : "") + ":";
+		.@menu$ += "Cancel";
+
+		.@s = select(.@menu$) - 1;
+		clear;
+		if (.@s == .@per_page) {
+			.@page++;
+			continue;
+		}
+		if (.@s == .@per_page + 1) {
+			.@page--;
+			continue;
+		}
+		if (.@s > .@per_page + 1) {
+			mes "[Quest Cleaner]";
+			mes "Come back any time.";
+			close;
+		}
+
+		.@id = @questlist_id[.@start + .@s];
+		.@name$ = @questlist_name$[.@start + .@s];
+
+		mes "[Quest Cleaner]";
+		mes "Remove ^FF0000" + .@name$ + "^000000 from your quest window?";
+		mes " ";
+		mes "This cannot be undone, and it does not always let you start the quest again.";
+		next;
+		if (select("No, keep it:^FF0000Yes, remove it^000000") == 2) {
+			mes "[Quest Cleaner]";
+			// The list may be outdated by now, only erase quests that are still unfinished
+			.@state = checkquest(.@id);
+			if (.@state == 0 || .@state == 1) {
+				erasequest .@id;
+				mes "^FF0000" + .@name$ + "^000000 has been removed.";
+			} else {
+				mes "That quest is no longer in your quest window.";
+			}
+			next;
+		}
+		clear;
+	}
+}
