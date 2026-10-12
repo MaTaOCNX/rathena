@@ -1,0 +1,79 @@
+# MaTaO-RO on LXC 100 (pve-1, 192.168.2.99) - runs the images from the registry, no source needed.
+#
+#   docker login mcr.mataocnx.com
+#   docker compose up -d
+#   docker compose logs -f map
+#   docker compose pull && docker compose up -d     update to the newest images
+
+x-rathena: &rathena
+    image: mcr.mataocnx.com/matao-ro/rathena-server:latest
+    restart: unless-stopped
+    init: true
+    environment: &rathena-env
+        TZ: Asia/Bangkok
+        DB_HOST: db
+        DB_PORT: 3306
+        DB_USER: ragnarok
+        DB_PASS: ragnarok
+        DB_NAME: ragnarok
+        # Address the game client connects to (this container's IP)
+        PUBLIC_IP: 192.168.2.99
+
+services:
+    db:
+        image: mcr.mataocnx.com/matao-ro/rathena-db:latest
+        restart: unless-stopped
+        environment:
+            TZ: Asia/Bangkok
+            MARIADB_ROOT_PASSWORD: ragnarok
+            MARIADB_DATABASE: ragnarok
+            MARIADB_USER: ragnarok
+            MARIADB_PASSWORD: ragnarok
+        ports:
+            - "127.0.0.1:3306:3306" # change to "3306:3306" to reach the database from the LAN
+        volumes:
+            - rathena-db:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            interval: 5s
+            timeout: 5s
+            retries: 30
+            start_period: 30s
+
+    login:
+        <<: *rathena
+        command: login
+        environment:
+            <<: *rathena-env
+            # Register from the client by logging in as <userid>_M or <userid>_F
+            NEW_ACCOUNT: "yes"
+        ports:
+            - "6900:6900"
+        depends_on:
+            db:
+                condition: service_healthy
+
+    char:
+        <<: *rathena
+        command: char
+        ports:
+            - "6121:6121"
+        depends_on:
+            db:
+                condition: service_healthy
+            login:
+                condition: service_started
+
+    map:
+        <<: *rathena
+        command: map
+        ports:
+            - "5121:5121"
+        depends_on:
+            db:
+                condition: service_healthy
+            char:
+                condition: service_started
+
+volumes:
+    rathena-db:
