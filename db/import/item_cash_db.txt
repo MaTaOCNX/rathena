@@ -43,7 +43,6 @@
 //5,13894,200
 
 7,25793,100
-0,19832,100
 2,24417,100
 2,24420,100
 2,24421,100
@@ -279,7 +278,6 @@
 2,19683,1000
 2,19684,1000
 2,19685,1000
-2,19686,1000
 2,19687,1000
 2,19689,1000
 2,19690,1000
@@ -287,7 +285,6 @@
 2,19695,1000
 2,19696,1000
 2,19697,1000
-2,19701,1000
 2,19702,1000
 2,19704,1000
 2,19706,1000
@@ -494,20 +491,6 @@
 2,19958,1000
 2,19959,1000
 2,19960,1000
-2,19961,1000
-2,19962,1000
-2,19963,1000
-2,19964,1000
-2,19965,1000
-2,19966,1000
-2,19967,1000
-2,19968,1000
-2,19969,1000
-2,19970,1000
-2,19971,1000
-2,19972,1000
-2,19973,1000
-2,19974,1000
 2,19977,1000
 2,19978,1000
 2,19979,1000
@@ -805,7 +788,6 @@
 2,20285,1000
 2,20286,1000
 2,20287,1000
-2,20288,1000
 2,20290,1000
 2,20291,1000
 2,20292,1000
@@ -896,9 +878,6 @@
 2,20384,1000
 2,20386,1000
 2,20388,1000
-2,20391,1000
-2,20392,1000
-2,20393,1000
 2,20394,1000
 2,20395,1000
 2,20396,1000
@@ -1355,3 +1334,374 @@
 7,100202,200
 7,100314,200
 7,100502,200
+
+//Overseas Care Package equipment (iRO OCP 1-85 and Remix, items that exist in this server's item db)
+4,1449,2000 // Gelerdria
+4,1665,2000 // Piercing Staff
+4,1672,2000 // Safety Rod
+4,1835,2000 // Spartacus
+4,1837,2000 // Iron Nail
+4,2158,2000 // Ramor Shield
+4,2165,2000 // Sol Shield
+4,2184,2000 // Bunker Shield
+4,2191,2000 // Solomon's Key
+4,2192,2000 // Rose of Eden
+4,2195,2000 // Lian Shield
+4,2196,2000 // White Gold Shield
+4,2198,2000 // Lapine Shield
+4,2371,2000 // Pantie
+4,2573,2000 // Archangel Wings
+4,2576,2000 // Adventurer's Backpack
+4,2589,2000 // Fallen Angel Wing
+4,2596,2000 // Sharel Manteau
+4,2598,2000 // Ramor Manteau
+4,2881,2000 // Orleans Necklace
+4,2913,2000 // Thief Handcuff
+4,2935,2000 // Sprint Gloves
+4,2936,2000 // Recovery Ring
+4,2948,2000 // Demon Wing
+4,2959,2000 // Fidelity Necklace
+4,2984,2000 // Glove Save Rimnil
+4,2985,2000 // Gyges Ring
+4,5329,2000 // Dark Blindfold C
+4,5361,2000 // Gangster Scarf
+4,5396,2000 // Jasper Crest
+4,5411,2000 // White Snake Hat
+4,5500,2000 // Icecream Hat
+4,5531,2000 // Baby Dragon Hat
+4,5564,2000 // Crown of Deceit
+4,5878,2000 // Miracle Blue Rose
+4,5916,2000 // Exorcist Glasses
+4,5917,2000 // Yellow Scarf
+4,5918,2000 // Gambler Seal
+4,5921,2000 // Monster Fish Gills
+4,5924,2000 // Dragon Knight Eye Patch
+4,5932,2000 // Birdcage in Paradise
+4,5933,2000 // Crow Tengu Mask
+4,5937,2000 // Flying Helmet
+4,5938,2000 // Octopus Hat
+4,5945,2000 // Well-Chewed Pencil
+4,5946,2000 // Drama Clockwork
+4,5963,2000 // Wing Headphone
+4,5966,2000 // KarduiEar
+4,5967,2000 // Flying Galapago
+4,5968,2000 // Clergy Nurse Cap
+4,5969,2000 // QueenAnzRevenge
+4,5971,2000 // Moon Eyepatch
+4,5972,2000 // Chatty Parrot
+4,5973,2000 // Ancient Elven Ear J
+4,5975,2000 // Zealotus Doll
+4,5978,2000 // Toy Syringe
+4,13085,2000 // Volcano Knife
+4,13088,2000 // Greater Lease
+4,15071,2000 // Valkyrian Robe
+4,15072,2000 // Nectar Suit
+4,15087,2000 // Azure Dragon Armor
+4,15102,2000 // Hunter Mail
+4,15103,2000 // Kirin Armor
+4,15104,2000 // FishingMan Mail
+4,15106,2000 // Engineer Mail
+4,15108,2000 // Venomous Insect Armor
+4,15112,2000 // Military Mail
+4,15122,2000 // Botany Mail
+4,15124,2000 // Holy Father Mail
+4,15125,2000 // Female Diver's Suit
+4,15130,2000 // Dragon Mail
+4,15134,2000 // Vicious Clothes
+4,15135,2000 // Dragon Clothes
+4,15139,2000 // Shepherd Clothes
+4,15140,2000 // Natural Clothes
+4,15143,2000 // Vermin Cloth
+4,15144,2000 // Agriculture Clothes
+4,15145,2000 // Evil Dragon Armor
+4,15165,2000 // Pure White Marching Hat
+4,15166,2000 // Rosary Necklace
+4,15169,2000 // Kardui Robe
+4,15204,2000 // Abyss Dress
+4,15205,2000 // Medical Scrubs
+4,15209,2000 // Drake Coat
+4,15352,2000 // Nature Dress
+4,15384,2000 // Ritual Robes
+4,15407,2000 // Whiteknight Armor
+4,15409,2000 // Bloody Doll's Dress
+4,15417,2000 // Armor of Purple Thread
+4,15419,2000 // Mighty White Threaded Armor
+4,15421,2000 // Triad God Mail
+4,15892,2000 // Crown of Justice
+4,16022,2000 // Nemesis
+4,16051,2000 // Valkyrie Hammer
+4,18129,2000 // Ixion Wing
+4,18522,2000 // Evil Marcher Hat
+4,18543,2000 // Witchs Hat
+4,18564,2000 // Love Piece
+4,18591,2000 // Mini Glasses
+4,18603,2000 // Black Devil Mask
+4,18613,2000 // Black Musang Hat
+4,18616,2000 // Long Tongue
+4,18656,2000 // Witch's Pumpkin Hat
+4,18657,2000 // Pegasus Wing Ears
+4,18666,2000 // CD In Mouth
+4,18670,2000 // Hankie In Mouth
+4,18676,2000 // Hexagon Spectacles
+4,18678,2000 // Leek In Mouth
+4,18720,2000 // Magical Booster
+4,18729,2000 // MVP Basketball
+4,18746,2000 // Chilly Breath
+4,18756,2000 // Black Shiba Inu Hat
+4,18787,2000 // Goal Tender Mask
+4,18799,2000 // Nero Mask
+4,18804,2000 // Thornbush Hairband
+4,18813,2000 // New Wave Sunglasses
+4,18823,2000 // Imperial Feather
+4,18842,2000 // Hat Of Girl
+4,18862,2000 // Chiu Armor
+4,18877,2000 // Baron's Evil Eye
+4,18887,2000 // Aqua Bunny Band
+4,18894,2000 // Rainbow Star
+4,18916,2000 // Bear Balloon
+4,18925,2000 // GodOfWinds Fan
+4,18933,2000 // Mechanical Plant Hat
+4,18937,2000 // Memories Of Lovers
+4,18938,2000 // Astro Circle
+4,18959,2000 // Old Pink Poo Hat
+4,18968,2000 // Demon Blue Poring Bubble
+4,19020,2000 // Survive Circlet
+4,19024,2000 // Protect Feathers
+4,19027,2000 // 10 Type Glasses
+4,19047,2000 // Angeling KnitCap
+4,19048,2000 // Elemental Tights
+4,19079,2000 // Celestial Woman's Flower
+4,19081,2000 // Faceworm Egg Shell
+4,19082,2000 // Bio Protector
+4,19083,2000 // Mask of Hero
+4,19095,2000 // Happy Balloon
+4,19102,2000 // Pale Moon Hat
+4,19104,2000 // Dragon Emperor's Wing
+4,19108,2000 // Wild Poring Rider
+4,19112,2000 // Tengu Scroll
+4,19114,2000 // Sting Silk Ribbon
+4,19125,2000 // Cylinder Hairband
+4,19137,2000 // Strawberry Mouth Guard
+4,19139,2000 // Survive Orb
+4,19140,2000 // Squirrel Ear Hat
+4,19141,2000 // Dolor Thanatos Mask
+4,19156,2000 // Lunar Rainbow
+4,19163,2000 // Catherina Von Blood
+4,19171,2000 // Magician Knit Hat
+4,19172,2000 // Sitting Pope Casual
+4,19173,2000 // Floating Ice
+4,19246,2000 // Royal Guard Necklace
+4,19269,2000 // Happy Flapping Angel Wings
+4,19272,2000 // Garden of Eden
+4,19274,2000 // Open Air Headset
+4,19285,2000 // Siegfried's Helmet
+4,19299,2000 // Tree Sprout
+4,19306,2000 // Heart Card in Mouth
+4,19326,2000 // Book of Soyga
+4,19329,2000 // Devil's Hand
+4,19337,2000 // Safety Glasses
+4,19342,2000 // Bull Hat
+4,19343,2000 // Circlet Of Phoenix
+4,19379,2000 // Striking Hat
+4,19380,2000 // Floating Ball
+4,19381,2000 // Protect Cloth
+4,19387,2000 // Experimental Goat Cap
+4,19391,2000 // Eyes Of Illusion
+4,19407,2000 // Work Cap
+4,19426,2000 // Spirit King's Crown
+4,19436,2000 // Vesper Headgear
+4,19437,2000 // Little Garden
+4,19451,2000 // Heavenly Order
+4,19453,2000 // Jeje Cap
+4,19460,2000 // Black Veil
+4,19469,2000 // Saint Crown
+4,19498,2000 // Citrus Ribbon
+4,19499,2000 // Fortunetelling Sealed
+4,20701,2000 // Sol Manteau
+4,20707,2000 // Kirin Wing
+4,20712,2000 // Valkyrie Cape
+4,20714,2000 // Assassin's Muffler
+4,20726,2000 // Fire Dragon's Coat
+4,20728,2000 // Water Dragon Coat
+4,20730,2000 // Loyalists Hood
+4,20753,2000 // Lian Robe
+4,20774,2000 // King of Void's Garment
+4,20778,2000 // Red Lotus Stole
+4,20783,2000 // Hero Cape
+4,20797,2000 // Etran Shirt
+4,20799,2000 // Elemental Towel
+4,20813,2000 // Cloak of Survival
+4,20814,2000 // Wakwak Manteau
+4,20816,2000 // Yoichi's Shawl
+4,20831,2000 // Adventurer's Spirit
+4,20836,2000 // Skin of Lindwyrm
+4,20837,2000 // Skin of Gwiber
+4,20845,2000 // Malach's Skin
+4,20846,2000 // Temporal Manteau
+4,20854,2000 // Medical Cape
+4,20859,2000 // Phreeoni Wings
+4,20860,2000 // Battle Surcoat
+4,20863,2000 // Menblatt's Wings
+4,20922,2000 // Leviathan Muffler
+4,20925,2000 // Commander Manteau
+4,20931,2000 // Prism Rangers Scarf
+4,20932,2000 // Old Morocc Shawl
+4,20941,2000 // Phoenix Muffler
+4,20942,2000 // Manteau Of Guardsman
+4,20949,2000 // Ladon's Skin
+4,20952,2000 // Nameless Assassin's Muffler
+4,20962,2000 // Typhon's Skin
+4,20969,2000 // Rainbow Muffler
+4,20973,2000 // Spiritual Cloth
+4,20991,2000 // Fairy of Eden
+4,21053,2000 // Full Force
+4,22016,2000 // Assassin's Shoes
+4,22017,2000 // Fisherman's Shoes
+4,22032,2000 // Exorcist's Shoes
+4,22042,2000 // Talaria Shoes
+4,22049,2000 // Sol Shoes
+4,22050,2000 // Gardener Shoes
+4,22051,2000 // Ramor Shoes
+4,22052,2000 // Gravekeeper Shoes
+4,22055,2000 // Sharel Shoes
+4,22057,2000 // Flow Shoes
+4,22058,2000 // Dragon Trainer Shoes
+4,22060,2000 // Hunter Shoes
+4,22062,2000 // Mechanic's Shoes
+4,22069,2000 // Lian Shoes
+4,22071,2000 // Applause Sandal
+4,22091,2000 // Fisherman's Shoes
+4,22093,2000 // Exorcist's Shoes
+4,22094,2000 // Gardener Shoes
+4,22096,2000 // Fallen Angel Shoes
+4,22097,2000 // Dragon Trainer Shoes
+4,22099,2000 // Mechanic Shoes
+4,22103,2000 // Excelion Leg
+4,22104,2000 // Pororoca Shoes
+4,22120,2000 // Shoes of Punishment
+4,22138,2000 // Devil Worshipper Shoes
+4,22145,2000 // Tengu's Shoes
+4,22170,2000 // Survivor's Shoes
+4,22174,2000 // Scaraba High Heels
+4,22189,2000 // Pilgrim Shoes
+4,22195,2000 // Booster Shoes
+4,22198,2000 // Traveler Shoes
+4,22203,2000 // Special Environment Boots
+4,22207,2000 // Imperial Boots
+4,22210,2000 // Fluffy Fish Shoes
+4,22212,2000 // Hollow Shoes
+4,22214,2000 // Authority Sandals
+4,22234,2000 // Frontier Boots
+4,28305,2000 // Vesper Core 04
+4,28320,2000 // Assassin's Despair
+4,28342,2000 // Critical Anklet
+4,28353,2000 // Vesper Gear 02
+4,28358,2000 // Cursed Lucky Clover
+4,28372,2000 // Imperial Ring
+4,28377,2000 // Magical Ring
+4,28379,2000 // Shadow Ring
+4,28386,2000 // Fallen Monk Rosary
+4,28394,2000 // Spirit King's Ring
+4,28410,2000 // Sapphire Wrist
+4,28411,2000 // Emerald Earring
+4,28429,2000 // Arquien's Necklace
+4,28430,2000 // Arch Bishop Ring
+4,28433,2000 // Luminous Blue Stone
+4,28437,2000 // Hibram's Gloves
+4,28438,2000 // Fairy Leaf Powder
+4,28484,2000 // Rebel Scarf
+4,28485,2000 // Shinobi Sash H
+4,28491,2000 // Hunting Knife
+4,28492,2000 // Thieve's Guide Vol.1
+4,28501,2000 // Horn of Kirin
+4,28503,2000 // Keraunos
+4,28505,2000 // Demon God's Ring
+4,28506,2000 // Storm Stone
+4,28507,2000 // Magician's Gloves
+4,28513,2000 // Celine's Brooch
+4,28520,2000 // Egir Ring
+4,28521,2000 // Giant's Protection
+4,28531,2000 // Blacksmith's Gloves
+4,28533,2000 // Chemical Glove
+4,28551,2000 // Imperial Glove
+4,28560,2000 // Yin Yang Talisman
+4,28564,2000 // Valkyrie Drop
+4,28575,2000 // Verus Core
+4,28598,2000 // Powered Chip
+4,28618,2000 // Book of the Sun God
+4,28717,2000 // Valkyrie Knife
+4,28903,2000 // Scutum
+4,28910,2000 // Rectangular Large Sleeve
+4,28916,2000 // Gaia Shield
+4,28918,2000 // Shield of Chaos
+4,28921,2000 // Anemos Shield
+4,28929,2000 // Happy Shield
+4,28941,2000 // Excelion Shield
+4,28951,2000 // Nero Shield
+4,32007,2000 // Dragon Spear of God Era
+4,32203,2000 // Accelerator Chip
+4,32206,2000 // Prontera Militia Glove
+4,32222,2000 // Brooch of Hero
+4,32227,2000 // Hrodvitnir's Chain
+4,32242,2000 // Old Detachment Ring
+4,32258,2000 // Ring of Jupiter
+4,400006,2000 // Heritage Symbol of the Orcs
+4,400044,2000 // Phantom Cap
+4,400048,2000 // Gift of Panagia
+4,400060,2000 // PikaPika NyanNyan Crown
+4,400101,2000 // Gate of Netherworld
+4,400113,2000 // Victory Wing Ear
+4,400177,2000 // Fafnir Helm
+4,410012,2000 // EXP Advisor
+4,410013,2000 // EXP Advisor
+4,410023,2000 // Twin Ribbon of Gemini
+4,410027,2000 // Wonder Egg Basket
+4,410096,2000 // Cinnabar Ribbon
+4,410097,2000 // Cinnabar Ribbon
+4,420006,2000 // Collar of Slavery
+4,420030,2000 // Feather In Mouth
+4,420031,2000 // Ninja's Blue Mask
+4,420068,2000 // Lord of Royals
+4,450165,2000 // Striking Armour
+4,450180,2000 // Pushy Frogy Kappa
+4,450208,2000 // Paracelsus Coat
+4,460004,2000 // Illusion Shield I
+4,470006,2000 // Sniping Shoes
+4,470008,2000 // Fluffy Dandelion Shoes
+4,470036,2000 // Illusion Military Boots
+4,470048,2000 // Striking Shoes
+4,470057,2000 // Pursuiter Shoes
+4,470075,2000 // Peep Toe Sandals
+4,470084,2000 // Rune Greaves
+4,470112,2000 // Moaning of EvilSpirits    # !todo check english name
+4,480023,2000 // Arabian Manteau
+4,480025,2000 // Owl Baron Cloak
+4,480053,2000 // Behemoth Muffler
+4,480064,2000 // Storm Muffler
+4,480075,2000 // Baby Boar Bib
+4,480077,2000 // Lava Manteau
+4,480085,2000 // Devils Garment
+4,480114,2000 // Striking Mikoshi
+4,480134,2000 // Avareco
+4,490013,2000 // Devil Ring
+4,490029,2000 // Geffenia Magic Device of Ice
+4,490037,2000 // Dark Ring
+4,490038,2000 // Perception Amplifier Ring
+4,490068,2000 // Ring of Venus
+4,490076,2000 // Ring of the Creation
+4,490083,2000 // Scales of Judgement
+4,490096,2000 // Ring of Hunter
+4,490098,2000 // Ring of Pazuzu
+4,490102,2000 // Skull Ring
+4,490104,2000 // Ring of Phoenix
+4,490110,2000 // Anulus Ira
+4,490113,2000 // Jasper Ring    # !todo check english name
+4,490118,2000 // Adoration Ring
+4,490130,2000 // Bracelet of Chenxu
+4,490141,2000 // Metal Pick
+4,490145,2000 // Ring of Ceryneian
+4,490146,2000 // Paracelsus Glove
+4,490193,2000 // Traveler Ring    # !todo check english name
+//Overseas Care Package costumes
+2,19911,1000 // Costume Triangle roof hat
+2,19927,1000 // Costume Drooping Gray Kitty
