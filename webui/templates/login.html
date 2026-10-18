@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Log in · {{ server_name }}{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <h1>Log in</h1>
+  <p class="muted">Use your game account.</p>
+  <form method="post" class="stack">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>Account name
+      <input name="userid" value="{{ userid or '' }}" autocomplete="username" required autofocus maxlength="23">
+    </label>
+    <label>Password
+      <input name="password" type="password" autocomplete="current-password" required maxlength="32">
+    </label>
+    <button type="submit">Log in</button>
+  </form>
+</section>
+{% endblock %}

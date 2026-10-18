@@ -1,0 +1,119 @@
+//===== rAthena Script =======================================
+//= Web Cash Points
+//===== Description: =========================================
+//= Processes what players queue in the web UI (webui/):
+//= - `web_cashpoints`: cash points to add
+//= - `web_cashshop_orders`: cash shop items bought on the web,
+//=   paid with cash points and sent by mail (RODEX)
+//= The web UI cannot change these itself because account
+//= variables live in the map server while a player is online.
+//= Online accounts are handled every few seconds, offline
+//= accounts at their next login.
+//===== Additional Comments: =================================
+//= 1.0 First Version [MaTaO-RO]
+//= 1.1 Web cash shop purchases [MaTaO-RO]
+//============================================================
+-	script	WebCashPoints	-1,{
+	end;
+
+OnInit:
+	query_sql "CREATE TABLE IF NOT EXISTS `web_cashpoints` ("
+		+ "`id` int(10) unsigned NOT NULL AUTO_INCREMENT,"
+		+ "`account_id` int(11) unsigned NOT NULL,"
+		+ "`amount` int(10) unsigned NOT NULL,"
+		+ "`requested_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,"
+		+ "`requested_ip` varchar(45) NOT NULL DEFAULT '',"
+		+ "`delivered_at` datetime DEFAULT NULL,"
+		+ "PRIMARY KEY (`id`),"
+		+ "KEY `pending` (`delivered_at`, `account_id`)"
+		+ ") ENGINE=InnoDB";
+	query_sql "CREATE TABLE IF NOT EXISTS `web_cashshop_orders` ("
+		+ "`id` int(10) unsigned NOT NULL AUTO_INCREMENT,"
+		+ "`account_id` int(11) unsigned NOT NULL,"
+		+ "`char_id` int(11) unsigned NOT NULL,"
+		+ "`item_id` int(10) unsigned NOT NULL,"
+		+ "`quantity` smallint(5) unsigned NOT NULL,"
+		+ "`price` int(10) unsigned NOT NULL,"
+		+ "`total` int(10) unsigned NOT NULL,"
+		+ "`status` enum('pending','done','failed') NOT NULL DEFAULT 'pending',"
+		+ "`note` varchar(100) NOT NULL DEFAULT '',"
+		+ "`requested_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,"
+		+ "`requested_ip` varchar(45) NOT NULL DEFAULT '',"
+		+ "`processed_at` datetime DEFAULT NULL,"
+		+ "PRIMARY KEY (`id`),"
+		+ "KEY `pending` (`status`, `account_id`)"
+		+ ") ENGINE=InnoDB";
+	initnpctimer;
+	end;
+
+OnPCLoginEvent:
+	// Account variables are loaded by now, so the timer may change them from here on
+	@webcash_ready = 1;
+	callsub S_Process;
+	end;
+
+OnTimer5000:
+	.@n = query_sql("SELECT `account_id` FROM `web_cashpoints` WHERE `delivered_at` IS NULL"
+		+ " UNION SELECT `account_id` FROM `web_cashshop_orders` WHERE `status` = 'pending' LIMIT 128", .@aid);
+	for (.@i = 0; .@i < .@n; .@i++) {
+		if (isloggedin(.@aid[.@i]) && attachrid(.@aid[.@i])) {
+			if (@webcash_ready)
+				callsub S_Process;
+			detachrid;
+		}
+	}
+	initnpctimer;
+	end;
+
+// Handles everything queued for the attached account: top-ups first, then purchases
+S_Process:
+	.@account_id = getcharid(3);
+
+	.@n = query_sql("SELECT `id`, `amount` FROM `web_cashpoints` WHERE `account_id` = " + .@account_id + " AND `delivered_at` IS NULL ORDER BY `id` LIMIT 100", .@id, .@amount);
+	for (.@i = 0; .@i < .@n; .@i++) {
+		// Mark first: a crash in between loses the row instead of applying it twice
+		query_sql "UPDATE `web_cashpoints` SET `delivered_at` = NOW() WHERE `id` = " + .@id[.@i];
+		#CASHPOINTS += .@amount[.@i];
+		.@added += .@amount[.@i];
+	}
+	if (.@added > 0)
+		dispbottom "Received " + F_InsertComma(.@added) + " cash points from the web. You now have " + F_InsertComma(#CASHPOINTS) + ".";
+
+	.@n = query_sql("SELECT o.`id`, o.`char_id`, o.`item_id`, o.`quantity`, o.`total`, IFNULL(c.`account_id`, 0) FROM `web_cashshop_orders` o"
+		+ " LEFT JOIN `char` c ON c.`char_id` = o.`char_id`"
+		+ " WHERE o.`account_id` = " + .@account_id + " AND o.`status` = 'pending' ORDER BY o.`id` LIMIT 50",
+		.@oid, .@char_id, .@item_id, .@qty, .@total, .@owner);
+	for (.@i = 0; .@i < .@n; .@i++) {
+		if (.@owner[.@i] != .@account_id) {
+			query_sql "UPDATE `web_cashshop_orders` SET `status` = 'failed', `note` = 'character not found', `processed_at` = NOW() WHERE `id` = " + .@oid[.@i];
+			continue;
+		}
+		if (getitemname(.@item_id[.@i]) == "null") {
+			query_sql "UPDATE `web_cashshop_orders` SET `status` = 'failed', `note` = 'unknown item', `processed_at` = NOW() WHERE `id` = " + .@oid[.@i];
+			continue;
+		}
+		if (#CASHPOINTS < .@total[.@i]) {
+			query_sql "UPDATE `web_cashshop_orders` SET `status` = 'failed', `note` = 'not enough cash points', `processed_at` = NOW() WHERE `id` = " + .@oid[.@i];
+			dispbottom "Web purchase of " + getitemname(.@item_id[.@i]) + " failed: not enough cash points.";
+			continue;
+		}
+		query_sql "UPDATE `web_cashshop_orders` SET `status` = 'done', `processed_at` = NOW() WHERE `id` = " + .@oid[.@i];
+		#CASHPOINTS -= .@total[.@i];
+
+		// Equipment does not stack: one attachment per piece, up to 5 per mail
+		.@left = .@qty[.@i];
+		while (.@left > 0) {
+			.@batch = (.@left > 5) ? 5 : .@left;
+			deletearray .@mail_items;
+			deletearray .@mail_amounts;
+			for (.@j = 0; .@j < .@batch; .@j++) {
+				.@mail_items[.@j] = .@item_id[.@i];
+				.@mail_amounts[.@j] = 1;
+			}
+			mail .@char_id[.@i], "Cash Shop", "Web purchase", "Your cash shop purchase from the web: " + .@qty[.@i] + " x " + getitemname(.@item_id[.@i]) + ".", 0, .@mail_items, .@mail_amounts;
+			.@left -= .@batch;
+		}
+		dispbottom "Web purchase: " + .@qty[.@i] + " x " + getitemname(.@item_id[.@i]) + " sent by mail for " + F_InsertComma(.@total[.@i]) + " cash points. " + F_InsertComma(#CASHPOINTS) + " left.";
+	}
+	return;
+}

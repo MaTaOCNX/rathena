@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Cash points · {{ server_name }}{% endblock %}
+{% block content %}
+<h1>Cash points</h1>
+
+<section class="card">
+  <div class="balance-big">{{ "{:,}".format([balance.available, 0]|max) }} <span>cash points available</span></div>
+  {% if balance.pending %}
+  <p class="muted">Includes {{ "{:,}".format(balance.pending) }} waiting to be credited in game{% if not balance.online %} at your next login{% endif %}.</p>
+  {% endif %}
+  {% if balance.reserved %}
+  <p class="muted">{{ "{:,}".format(balance.reserved) }} reserved for purchases that are not delivered yet{% if not balance.online %} (delivered at your next login){% endif %}.</p>
+  {% endif %}
+  {% if balance.online %}
+  <p class="muted">You are online. Points spent in game since the last save may not be reflected here yet.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Add cash points</h2>
+  <form method="post" class="row">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <input name="amount" inputmode="numeric" pattern="[0-9,]*" placeholder="Amount" required aria-label="Amount">
+    <button type="submit" {{ 'disabled' if not max_add }}>Add</button>
+  </form>
+  <div class="quick">
+    {% for n in [1000, 10000, 100000, 1000000] %}
+    <form method="post" class="inline">
+      <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+      <input type="hidden" name="amount" value="{{ n }}">
+      <button type="submit" class="secondary" {{ 'disabled' if n > max_add }}>+{{ "{:,}".format(n) }}</button>
+    </form>
+    {% endfor %}
+  </div>
+</section>
+
+{% if orders %}
+<section class="card">
+  <h2>Recent purchases</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Qty</th><th>Cost</th><th>To</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for item_id, quantity, total, status, note, requested_at, char_name in orders %}
+      <tr>
+        <td>{{ item_names.get(item_id, '#' ~ item_id) }}</td>
+        <td class="num">{{ quantity }}</td>
+        <td class="num">{{ "{:,}".format(total) }}</td>
+        <td>{{ char_name or '-' }}</td>
+        <td>{% if status == 'done' %}Mailed{% elif status == 'failed' %}<span class="failed">Failed{% if note %}: {{ note }}{% endif %}</span>{% else %}<span class="pending">Waiting</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+
+{% if history %}
+<section class="card">
+  <h2>Recent additions</h2>
+  <table>
+    <thead><tr><th>Amount</th><th>Added</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for amount, requested_at, delivered_at in history %}
+      <tr>
+        <td class="num">{{ "{:,}".format(amount) }}</td>
+        <td>{{ requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>{% if delivered_at %}Credited {{ delivered_at.strftime('%H:%M') }}{% else %}<span class="pending">Waiting</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

@@ -35,3 +35,6 @@
 /sql-files
 /tools
 !/tools/docker/entrypoint.sh
+
+# Web UI
+**/__pycache__

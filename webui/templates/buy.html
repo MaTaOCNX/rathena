@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Buy {{ item.name }} · {{ server_name }}{% endblock %}
+{% block content %}
+<p><a href="{{ url_for('shop') }}">&larr; Back to the cash shop</a></p>
+
+<section class="card narrow-wide">
+  <div class="item-head">
+    {% if icon_url %}<img src="{{ icon_url.format(id=item.id) }}" alt="" width="24" height="24" onerror="this.remove()">{% endif %}
+    <div>
+      <h1 class="buy-title">{{ item.name }}{% if item.slots %} <span class="muted">[{{ item.slots }}]</span>{% endif %}</h1>
+      <div class="meta">#{{ item.id }} · {{ item.slot_label or item.type }} · {{ cash_tabs[item.tab] }} tab</div>
+    </div>
+  </div>
+
+  <dl class="stats">
+    {% if item.attack %}<div><dt>ATK</dt><dd>{{ item.attack }}</dd></div>{% endif %}
+    {% if item.matk %}<div><dt>MATK</dt><dd>{{ item.matk }}</dd></div>{% endif %}
+    {% if item.defense %}<div><dt>DEF</dt><dd>{{ item.defense }}</dd></div>{% endif %}
+    {% if item.level %}<div><dt>Equip Lv</dt><dd>{{ item.level }}</dd></div>{% endif %}
+    <div><dt>Weight</dt><dd>{{ '%g' % item.weight }}</dd></div>
+  </dl>
+
+  <p class="price-line"><span class="price">{{ "{:,}".format(item.price) }} <span>CP each</span></span>
+    <span class="muted">· you have {{ "{:,}".format([balance.available, 0]|max) }} CP available</span></p>
+
+  {% if not chars %}
+  <p class="flash error">This account has no characters yet. Create one in game first.</p>
+  {% else %}
+  <form method="post" class="stack">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>Send to character
+      <select name="char_id" required>
+        {% for c in chars %}
+        <option value="{{ c.char_id }}">{{ c.name }} (Lv {{ c.level }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Quantity
+      <input name="quantity" type="number" min="1" max="{{ max_quantity }}" value="1" required id="qty">
+    </label>
+    <p class="muted" id="total">Total: {{ "{:,}".format(item.price) }} CP</p>
+    <button type="submit" {{ 'disabled' if balance.available < item.price }}>Buy</button>
+    {% if balance.available < item.price %}
+    <p class="muted">Not enough cash points. <a href="{{ url_for('cash') }}">Add cash points</a></p>
+    {% endif %}
+    <p class="muted">The item is sent to the character's mailbox (RODEX). If you are offline it is sent when you next log in.</p>
+  </form>
+  <script>
+    (function () {
+      var qty = document.getElementById('qty'), total = document.getElementById('total'), price = {{ item.price }};
+      qty.addEventListener('input', function () {
+        var n = Math.max(0, parseInt(qty.value, 10) || 0);
+        total.textContent = 'Total: ' + (n * price).toLocaleString('en-US') + ' CP';
+      });
+    })();
+  </script>
+  {% endif %}
+</section>
+{% endblock %}

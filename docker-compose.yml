@@ -85,5 +85,27 @@ services:
             char:
                 condition: service_started
 
+    # Web UI: log in with a game account, search the cash shop, add cash points
+    web:
+        image: ${REGISTRY:-mcr.mataocnx.com/matao-ro}/rathena-web:${TAG:-latest}
+        build:
+            context: .
+            dockerfile: webui/Dockerfile
+        restart: unless-stopped
+        environment:
+            TZ: ${TZ:-Asia/Bangkok}
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_USER: ${DB_USER:-ragnarok}
+            DB_PASS: ${DB_PASS:-ragnarok}
+            DB_NAME: ${DB_NAME:-ragnarok}
+            SECRET_KEY: ${WEB_SECRET_KEY:-}
+            SERVER_TITLE: ${WEB_TITLE:-MaTaO-RO}
+        ports:
+            - "${WEB_PUBLISH:-8080}:8080"
+        depends_on:
+            db:
+                condition: service_healthy
+
 volumes:
     rathena-db:

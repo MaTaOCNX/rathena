@@ -75,5 +75,25 @@ services:
             char:
                 condition: service_started
 
+    # Web UI on http://192.168.2.99:8080 - game account login, cash shop search, cash points
+    web:
+        image: mcr.mataocnx.com/matao-ro/rathena-web:latest
+        restart: unless-stopped
+        environment:
+            TZ: Asia/Bangkok
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_USER: ragnarok
+            DB_PASS: ragnarok
+            DB_NAME: ragnarok
+            # Set a long random value so logins survive restarts
+            SECRET_KEY: ""
+            SERVER_TITLE: MaTaO-RO
+        ports:
+            - "8080:8080"
+        depends_on:
+            db:
+                condition: service_healthy
+
 volumes:
     rathena-db:
