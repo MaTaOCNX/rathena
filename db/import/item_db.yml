@@ -579,3 +579,55 @@ Body:
 #    Gender: Female
 #  - Id: 5735
 #    Gender: Female
+# MaTaO-RO: Gate of Netherworld - the refine bonuses checked .@i, which is never set
+  - Id: 400101
+    Script: |
+      .@r = getrefine();
+      bonus bAgi,5;
+      bonus bInt,5;
+      bonus bDef,3;
+      bonus bMdef,10;
+      bonus2 bAddRace,RC_All,10;
+      bonus2 bMagicAddRace,RC_All,10;
+      if (.@r>=7) {
+         bonus2 bAddRace,RC_All,15;
+         bonus2 bMagicAddRace,RC_All,15;
+         bonus bFixedCastrate,-50;
+      }
+      if (.@r>=9) {
+         bonus bAspdRate,15;
+         bonus bFixedCastrate,-70;
+      }
+# MaTaO-RO: Wonder Egg Basket - compare the pet's egg item (as upstream rAthena does), not its unique pet id
+  - Id: 410027
+    Script: |
+      bonus2 bAddSize,Size_All,10;
+      bonus2 bMagicAddSize,Size_All,10;
+      switch( getpetinfo(PETINFO_EGGID) ) {
+      case 9112:  // Moonlight_Egg
+         bonus2 bHPVanishRate,40,4;
+         break;
+      case 9088:  // Angeling_Egg
+         bonus bBaseAtk,readparam(bLuk);
+         bonus bMatk,readparam(bLuk);
+         bonus2 bExpAddClass,Class_All,5;
+         break;
+      case 9096:  // Cat_O_Nine_Tail_Egg
+         bonus2 bAddRace,RC_Demon,30;
+         bonus2 bMagicAddRace,RC_Demon,30;
+         bonus2 bSubRace,RC_Demon,5;
+         break;
+      case 9087:  // High_Orc_Egg
+         bonus2 bAddRace,RC_Brute,30;
+         bonus2 bMagicAddRace,RC_Brute,30;
+         bonus2 bSubRace,RC_Brute,5;
+         break;
+      case 9069:  // Mastering_Egg
+         bonus2 bAddRace,RC_Plant,30;
+         bonus2 bMagicAddRace,RC_Plant,30;
+         bonus2 bSubRace,RC_Plant,5;
+         break;
+      case 9106:  // Metaller_Egg
+         bonus3 bAutoSpell,"WM_METALICSOUND",5,150;
+         break;
+      }
